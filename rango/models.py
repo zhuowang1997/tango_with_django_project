@@ -1,6 +1,6 @@
 from django.db import models
 
-class Category(models.Model):
+class Category(models.Model,verws=0, likes=0):
     name = models.CharField(max_length=128, unique=True)
     class Meta:
         verbose_name_plural = 'Categories'
