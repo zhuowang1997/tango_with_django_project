@@ -46,7 +46,7 @@ def show_category(request, category_name_slug):
         context_dict['pages'] = None
 
     return render(request, 'rango/category.html', context=context_dict)
-    
+
 @login_required
 def add_category(request):
     form = CategoryForm()
@@ -77,7 +77,7 @@ def add_page(request, category_name_slug):
         category = None
     # You cannot add a page to a Category that does not exist...
     if category is None:
-        return redirect('/rango/')
+        return redirect(reverse('rango:index'))
     form = PageForm()
     if request.method == 'POST':
         form = PageForm(request.POST)
