@@ -8,7 +8,7 @@ from django.urls import reverse
 from rango.forms import PageForm
 from rango.forms import UserForm, UserProfileForm
 from django.contrib.auth import authenticate, login
-
+from django.contrib.auth.decorators import login_required
 def index(request):
     category_list = Category.objects.order_by('-likes')[:5]
     pages_list = Page.objects.order_by('-views')[:5]
@@ -193,3 +193,8 @@ def user_login(request):
         # No context variables to pass to the template system, hence the
         # blank dictionary object...
         return render(request, 'rango/login.html')
+
+
+@login_required
+def restricted(request):
+    return HttpResponse("Since you're logged in, you can see this text!")
